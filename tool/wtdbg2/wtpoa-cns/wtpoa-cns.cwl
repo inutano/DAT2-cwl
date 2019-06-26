@@ -21,13 +21,14 @@ inputs:
       prefix: -i
   overwrite:
     type: boolean
+    default: true
     label: "Force overwrite"
     inputBinding:
       prefix: -f
   output_filename:
     type: string
-    label: "Output files"
     default: worm.wtdbg2.fa
+    label: "Output files"
     inputBinding:
       prefix: -o
 
