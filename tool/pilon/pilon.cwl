@@ -5,6 +5,10 @@ doc: "Pilon for hybrid genome assembly"
 requirements:
   DockerRequirement:
     dockerPull: quay.io/biocontainers/pilon:1.23--0
+  InitialWorkDirRequirement:
+    listing:
+      - entry: $(inputs.bam_index)
+        entryname: $(inputs.bam_index.basename)
 baseCommand: [java]
 
 arguments:
@@ -33,6 +37,9 @@ inputs:
     doc: "A bam file of unknown type; Pilon will scan it and attempt to classify it"
     inputBinding:
       prefix: --bam
+  bam_index:
+    type: File
+    label: "A bam file index"
   threads:
     type: int
     label: "Degree of parallelism to use for certain processing"
