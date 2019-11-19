@@ -19,6 +19,11 @@ inputs:
     label: "Long reads sequences file (REQUIRED; can be multiple)"
     inputBinding:
       prefix: -i
+  genome_size:
+    type: string
+    label: "Provide genome size, e.g. 100.4m, 2.3g. In this version, it is used with -X/--rdcov-cutoff in selecting reads just after readed all."
+    inputBinding:
+      prefix: --genome-size
   overwrite:
     type: boolean
     label: "Force to overwrite output files"
