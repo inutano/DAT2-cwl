@@ -39,80 +39,80 @@ inputs:
 
 outputs:
   dot_file_initialized_graph:
-    type: File?
+    type: File
     label: "DOT file for initialized graph"
     outputBinding:
-      glob: $(inputs.output_prefix).1.dot
+      glob: $(inputs.output_prefix).1.dot*
   nodes:
-    type: File?
+    type: File
     label: "nodes and their positions in reads"
     outputBinding:
-      glob: $(inputs.output_prefix).1.nodes
+      glob: $(inputs.output_prefix).1.nodes*
   reads:
-    type: File?
+    type: File
     label: "reads and their nodes"
     outputBinding:
-      glob: $(inputs.output_prefix).1.reads
+      glob: $(inputs.output_prefix).1.reads*
   dot_file_after_transitive_reduction:
-    type: File?
+    type: File
     label: "DOT file after transitive reduction"
     outputBinding:
-      glob: $(inputs.output_prefix).2.dot
+      glob: $(inputs.output_prefix).2.dot*
   dot_file_after_merging_bubble:
-    type: File?
+    type: File
     label: "DOT file after merging bubble and remove tips"
     outputBinding:
-      glob: $(inputs.output_prefix).3.dot
+      glob: $(inputs.output_prefix).3.dot*
   kbmap:
-    type: File?
+    type: File
     label: "KBMAP file, all vs all alignments"
     outputBinding:
-      glob: $(inputs.output_prefix).alignments
+      glob: $(inputs.output_prefix).alignments*
   binkmer:
-    type: File?
+    type: File
     label: "Distribution of number of k-mers in a BIN"
     outputBinding:
-      glob: $(inputs.output_prefix).binkmer
+      glob: $(inputs.output_prefix).binkmer*
   closed_bins:
-    type: File?
+    type: File
     label: "Filtered BINs"
     outputBinding:
-      glob: $(inputs.output_prefix).closed_bins
+      glob: $(inputs.output_prefix).closed_bins*
   clps:
-    type: File?
+    type: File
     label: "Reads clip information"
     outputBinding:
-      glob: $(inputs.output_prefix).clps
+      glob: $(inputs.output_prefix).clps*
   dot_contig:
-    type: File?
+    type: File
     label: "DOT file for contigs"
     outputBinding:
-      glob: $(inputs.output_prefix).ctg.dot
+      glob: $(inputs.output_prefix).ctg.dot*
   contig_layout:
-    type: File?
+    type: File
     label: "Contigs layout file. Will be read by wtdbg-cns. This file is the main result of wtdbg"
     outputBinding:
-      glob: $(inputs.output_prefix).ctg.lay
+      glob: $(inputs.output_prefix).ctg.lay*
   events:
-    type: File?
+    type: File
     label: "Log file of graph simplification"
     outputBinding:
-      glob: $(inputs.output_prefix).events
+      glob: $(inputs.output_prefix).events*
   dot_unitigs:
-    type: File?
+    type: File
     label: "DOT file for unitigs"
     outputBinding:
-      glob: $(inputs.output_prefix).frg.dot
+      glob: $(inputs.output_prefix).frg.dot*
   nodes_unitigs:
-    type: File?
+    type: File
     label: "unitigs and their nodes"
     outputBinding:
-      glob: $(inputs.output_prefix).frg.nodes
+      glob: $(inputs.output_prefix).frg.nodes*
   kmerdep:
-    type: File?
+    type: File
     label: "Distribution of k-mer depth"
     outputBinding:
-      glob: $(inputs.output_prefix).kmerdep
+      glob: $(inputs.output_prefix).kmerdep*
   stdout: stdout
   stderr:
     type: stderr
