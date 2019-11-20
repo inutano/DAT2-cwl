@@ -43,6 +43,8 @@ inputs:
   index_base:
     type: File
     label: "fasta file for index basename"
+    inputBinding:
+      position: 1
   amb:
     type: File
   ann:
