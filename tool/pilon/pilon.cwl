@@ -31,7 +31,7 @@ inputs:
     label: "genome fasta file to be polished"
     inputBinding:
       prefix: --genome
-  alinged_bam:
+  aligned_bam:
     type: File
     label: "A bam file of unknown type"
     doc: "A bam file of unknown type; Pilon will scan it and attempt to classify it"
@@ -55,7 +55,7 @@ inputs:
       prefix: --output
 outputs:
   output_files:
-    type: File
+    type: File[]
     outputBinding:
       glob: "*"
   stdout: stdout
