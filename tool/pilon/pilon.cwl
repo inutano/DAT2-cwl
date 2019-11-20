@@ -7,6 +7,8 @@ requirements:
     dockerPull: quay.io/biocontainers/pilon:1.23--0
   InitialWorkDirRequirement:
     listing:
+      - entry: $(inputs.aligned_bam)
+        entryname: $(inputs.aligned_bam.basename)
       - entry: $(inputs.bam_index)
         entryname: $(inputs.bam_index.basename)
 baseCommand: [java]
