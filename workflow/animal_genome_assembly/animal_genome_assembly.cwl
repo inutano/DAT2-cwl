@@ -47,20 +47,20 @@ steps:
       - Weighted_LogTransformed_HistogramReadlength
       - NanoPlot-report
       - NanoStats
-  canu:
-    run: ../../tool/canu/canu.cwl
-    in:
-      input_fastq: INPUT_LONGREAD
-      genomeSize: ESTIMATED_GENOME_SIZE
-      maxThreads: THREADS
-    out:
-      - contigs
-  bbmap-stats-canu-contigs:
-    run: ../../tool/bbmap/bbmap-stats/bbmap-stats.cwl
-    in:
-      input_fastq: canu/contigs
-    out:
-      - stats
+  # canu:
+  #   run: ../../tool/canu/canu.cwl
+  #   in:
+  #     input_fastq: INPUT_LONGREAD
+  #     genomeSize: ESTIMATED_GENOME_SIZE
+  #     maxThreads: THREADS
+  #   out:
+  #     - contigs
+  # bbmap-stats-canu-contigs:
+  #   run: ../../tool/bbmap/bbmap-stats/bbmap-stats.cwl
+  #   in:
+  #     input_fastq: canu/contigs
+  #   out:
+  #     - stats
   wtdbg2:
     run: ../../tool/wtdbg2/wtdbg2/wtdbg2.cwl
     in:
