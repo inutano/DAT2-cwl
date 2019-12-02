@@ -25,18 +25,21 @@ steps:
     run: ../../tool/jellyfish/count/jellyfish-count.cwl
     in:
       input_file: INPUT_SHORTREAD
+      threads: THREADS
     out:
       - kmers
   jellyfish-histo:
     run: ../../tool/jellyfish/histo/jellyfish-histo.cwl
     in:
       kmer_db: jellyfish-count/kmers
+      threads: THREADS
     out:
       - stdout
   nanoplot:
     run: ../../tool/nanoplot/nanoplot.cwl
     in:
       sequence: INPUT_LONGREAD
+      threads: THREADS
     out:
       - HistogramReadlength
       - LogTransformed_HistogramReadlength
@@ -66,6 +69,7 @@ steps:
     in:
       sequence: INPUT_LONGREAD
       genome_size: ESTIMATED_GENOME_SIZE
+      threads: THREADS
     out:
       - dot_file_initialized_graph
       - nodes
@@ -86,6 +90,7 @@ steps:
     run: ../../tool/wtdbg2/wtpoa-cns/wtpoa-cns.cwl
     in:
       input_contigs: wtdbg2/contig_layout
+      threads: THREADS
     out:
       - output_file
   bbmap-stats-wtdbg2-contigs:
@@ -114,6 +119,7 @@ steps:
       bwt: bwa-index/bwt
       pac: bwa-index/pac
       sa: bwa-index/sa
+      threads: THREADS
     out:
       - output
   samtools-view:
@@ -127,6 +133,7 @@ steps:
     run: ../../tool/samtools/sort/samtools-sort.cwl
     in:
       input_bamfile: samtools-view/bam
+      threads: THREADS
     out:
       - sorted_bam
   samtools-index:
