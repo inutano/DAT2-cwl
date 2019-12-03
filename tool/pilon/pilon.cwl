@@ -56,10 +56,18 @@ inputs:
     inputBinding:
       prefix: --output
 outputs:
-  output_files:
-    type: File[]
+  bam:
+    type: File
     outputBinding:
-      glob: "*"
+      glob: "*bam"
+  bam_index:
+    type: File
+    outputBinding:
+      glob: "*bai"
+  fasta:
+    type: File
+    outputBinding:
+      glob: $(inputs.output_prefix).fasta
   stdout: stdout
   stderr: stderr
 stdout: pilon-stdout.log

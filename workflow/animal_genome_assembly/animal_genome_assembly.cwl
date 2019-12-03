@@ -150,7 +150,42 @@ steps:
       bam_index: samtools-index/bam_index
       threads: THREADS
     out:
-      - output_files
+      - fasta
+      - bam
+      - bam_index
+  pilon-2:
+    run: ../../tool/pilon/pilon.cwl
+    in:
+      genome_fasta: pilon-1/fasta
+      aligned_bam: pilon-1/bam
+      bam_index: pilon-1/bam_index
+      threads: THREADS
+    out:
+      - fasta
+      - bam
+      - bam_index
+  pilon-3:
+    run: ../../tool/pilon/pilon.cwl
+    in:
+      genome_fasta: pilon-2/fasta
+      aligned_bam: pilon-2/bam
+      bam_index: pilon-2/bam_index
+      threads: THREADS
+    out:
+      - fasta
+      - bam
+      - bam_index
+  pilon-4:
+    run: ../../tool/pilon/pilon.cwl
+    in:
+      genome_fasta: pilon-3/fasta
+      aligned_bam: pilon-3/bam
+      bam_index: pilon-3/bam_index
+      threads: THREADS
+    out:
+      - fasta
+      - bam
+      - bam_index
 
 outputs:
   bbmap-stats-initial_stats:
@@ -198,6 +233,15 @@ outputs:
   samtools-index_bam_index:
     type: File
     outputSource: samtools-index/bam_index
-  pilon-1_output_files:
-    type: File[]
-    outputSource: pilon-1/output_files
+  pilon-1_fasta:
+    type: File
+    outputSource: pilon-1/fasta
+  pilon-2_fasta:
+    type: File
+    outputSource: pilon-2/fasta
+  pilon-3_fasta:
+    type: File
+    outputSource: pilon-3/fasta
+  pilon-4_fasta:
+    type: File
+    outputSource: pilon-4/fasta
