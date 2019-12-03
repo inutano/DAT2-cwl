@@ -27,11 +27,11 @@ steps:
       input_file: INPUT_SHORTREAD
       threads: THREADS
     out:
-      - kmers
+      - kmer0
   jellyfish-histo:
     run: ../../tool/jellyfish/histo/jellyfish-histo.cwl
     in:
-      kmer_db: jellyfish-count/kmers
+      kmer_db: jellyfish-count/kmer0
       threads: THREADS
     out:
       - stdout

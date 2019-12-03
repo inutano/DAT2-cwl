@@ -44,10 +44,14 @@ inputs:
       position: 1
 
 outputs:
-  kmers:
+  kmer0:
     type: File
     outputBinding:
-      glob: $(inputs.output)*
+      glob: $(inputs.output)_0
+  kmer1:
+    type: File
+    outputBinding:
+      glob: $(inputs.output)_1
   stdout: stdout
   stderr: stderr
 stdout: jellyfish-count-stdout.log
