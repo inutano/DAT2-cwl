@@ -2,7 +2,8 @@
 cwlVersion: v1.0
 class: Workflow
 doc: "Animal Genome Assembly pipeline by Kazuharu Arakawa (@gaou_ak), CWLized by Tazro Ohta (@inutano)"
-requirements: {}
+requirements:
+  SubworkflowFeatureRequirement: {}
 
 inputs:
   THREADS:
@@ -99,93 +100,38 @@ steps:
       input_fastq: wtpoa-cns/output_file
     out:
       - stats
-  bwa-index:
-    run: ../../tool/bwa/index/bwa-index.cwl
+  error_correction1:
+    run: hybrid_error_correction.cwl
     in:
-      input_fasta: wtpoa-cns/output_file
-    out:
-      - amb
-      - ann
-      - bwt
-      - pac
-      - sa
-  bwa-mem:
-    run: ../../tool/bwa/mem/bwa-mem.cwl
-    in:
-      fastq_forward: INPUT_SHORTREAD
-      index_base: wtpoa-cns/output_file
-      amb: bwa-index/amb
-      ann: bwa-index/ann
-      bwt: bwa-index/bwt
-      pac: bwa-index/pac
-      sa: bwa-index/sa
-      threads: THREADS
-    out:
-      - output
-  samtools-view:
-    run: ../../tool/samtools/view/samtools-view.cwl
-    in:
-      threads: THREADS
-      input_file: bwa-mem/output
-    out:
-      - bam
-  samtools-sort:
-    run: ../../tool/samtools/sort/samtools-sort.cwl
-    in:
-      input_bamfile: samtools-view/bam
-      threads: THREADS
-    out:
-      - sorted_bam
-  samtools-index:
-    run: ../../tool/samtools/index/samtools-index.cwl
-    in:
-      input_bamfile: samtools-sort/sorted_bam
-    out:
-      - bam_index
-  pilon-1:
-    run: ../../tool/pilon/pilon.cwl
-    in:
-      genome_fasta: wtpoa-cns/output_file
-      aligned_bam: samtools-sort/sorted_bam
-      bam_index: samtools-index/bam_index
-      threads: THREADS
+      THREADS: THREADS
+      INPUT_FASTA: wtpoa-cns/output_file
+      INPUT_SHORTREAD: INPUT_SHORTREAD
     out:
       - fasta
-      - bam
-      - bam_index
-  pilon-2:
-    run: ../../tool/pilon/pilon.cwl
+  error_correction2:
+    run: hybrid_error_correction.cwl
     in:
-      genome_fasta: pilon-1/fasta
-      aligned_bam: samtools-sort/sorted_bam
-      bam_index: samtools-index/bam_index
-      threads: THREADS
+      THREADS: THREADS
+      INPUT_FASTA: error_correction1/fasta
+      INPUT_SHORTREAD: INPUT_SHORTREAD
     out:
       - fasta
-      - bam
-      - bam_index
-  pilon-3:
-    run: ../../tool/pilon/pilon.cwl
+  error_correction3:
+    run: hybrid_error_correction.cwl
     in:
-      genome_fasta: pilon-2/fasta
-      aligned_bam: samtools-sort/sorted_bam
-      bam_index: samtools-index/bam_index
-      threads: THREADS
+      THREADS: THREADS
+      INPUT_FASTA: error_correction2/fasta
+      INPUT_SHORTREAD: INPUT_SHORTREAD
     out:
       - fasta
-      - bam
-      - bam_index
-  pilon-4:
-    run: ../../tool/pilon/pilon.cwl
+  error_correction4:
+    run: hybrid_error_correction.cwl
     in:
-      genome_fasta: pilon-3/fasta
-      aligned_bam: samtools-sort/sorted_bam
-      bam_index: samtools-index/bam_index
-      threads: THREADS
+      THREADS: THREADS
+      INPUT_FASTA: error_correction3/fasta
+      INPUT_SHORTREAD: INPUT_SHORTREAD
     out:
       - fasta
-      - bam
-      - bam_index
 
 outputs:
   bbmap-stats-initial_stats:
@@ -227,21 +173,15 @@ outputs:
   bbmap-stats-wtdbg2-contigs_stats:
     type: File
     outputSource: bbmap-stats-wtdbg2-contigs/stats
-  samtools-sort_sorted_bam:
+  error_corrected_fasta_1:
     type: File
-    outputSource: samtools-sort/sorted_bam
-  samtools-index_bam_index:
+    outputSource: error_correction1/fasta
+  error_corrected_fasta_2:
     type: File
-    outputSource: samtools-index/bam_index
-  pilon-1_fasta:
+    outputSource: error_correction2/fasta
+  error_corrected_fasta_3:
     type: File
-    outputSource: pilon-1/fasta
-  pilon-2_fasta:
+    outputSource: error_correction3/fasta
+  error_corrected_fasta_4:
     type: File
-    outputSource: pilon-2/fasta
-  pilon-3_fasta:
-    type: File
-    outputSource: pilon-3/fasta
-  pilon-4_fasta:
-    type: File
-    outputSource: pilon-4/fasta
+    outputSource: error_correction4/fasta

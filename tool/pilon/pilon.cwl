@@ -56,11 +56,11 @@ inputs:
     inputBinding:
       prefix: --output
 outputs:
-  bam:
+  out_bam:
     type: File
     outputBinding:
       glob: "*bam"
-  bam_index:
+  out_bam_index:
     type: File
     outputBinding:
       glob: "*bai"
