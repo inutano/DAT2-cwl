@@ -157,8 +157,8 @@ steps:
     run: ../../tool/pilon/pilon.cwl
     in:
       genome_fasta: pilon-1/fasta
-      aligned_bam: pilon-1/bam
-      bam_index: pilon-1/bam_index
+      aligned_bam: samtools-sort/sorted_bam
+      bam_index: samtools-index/bam_index
       threads: THREADS
     out:
       - fasta
@@ -168,8 +168,8 @@ steps:
     run: ../../tool/pilon/pilon.cwl
     in:
       genome_fasta: pilon-2/fasta
-      aligned_bam: pilon-2/bam
-      bam_index: pilon-2/bam_index
+      aligned_bam: samtools-sort/sorted_bam
+      bam_index: samtools-index/bam_index
       threads: THREADS
     out:
       - fasta
@@ -179,8 +179,8 @@ steps:
     run: ../../tool/pilon/pilon.cwl
     in:
       genome_fasta: pilon-3/fasta
-      aligned_bam: pilon-3/bam
-      bam_index: pilon-3/bam_index
+      aligned_bam: samtools-sort/sorted_bam
+      bam_index: samtools-index/bam_index
       threads: THREADS
     out:
       - fasta
