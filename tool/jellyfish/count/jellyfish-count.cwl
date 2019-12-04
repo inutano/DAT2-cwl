@@ -44,12 +44,16 @@ inputs:
       position: 1
 
 outputs:
+  kmers:
+    type: File[]
+    outputBinding:
+      glob: $(inputs.output)*
   kmer0:
-    type: File
+    type: File?
     outputBinding:
       glob: $(inputs.output)_0
   kmer1:
-    type: File
+    type: File?
     outputBinding:
       glob: $(inputs.output)_1
   stdout: stdout
