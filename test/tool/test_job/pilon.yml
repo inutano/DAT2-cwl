@@ -4,3 +4,6 @@ genome_fasta:
 aligned_bam:
   class: File
   path: ../../data/aln.sorted.bam
+bam_index:
+  class: File
+  path: ../../data/aln.sorted.bam.bai
