@@ -1,3 +1,4 @@
 sequence:
     class: File
-    path: ../../data/ERR2092776_1.50reads.fastq
+    location: http://nanopore.s3.climb.ac.uk/MAP006-PCR-1_2D_pass.fasta
+genome_size: 4.8m
